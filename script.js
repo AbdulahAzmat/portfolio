@@ -18,15 +18,6 @@ if (!reduceMotion && revealEls.length) {
   revealEls.forEach(el => el.classList.add('in'));
 }
 
-// Résumé button placeholder (only present on some pages)
-const resumeBtn = document.getElementById('resumeBtn');
-if (resumeBtn) {
-  resumeBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Add a link to your résumé PDF here (swap the href on #resumeBtn).');
-  });
-}
-
 // Ambient node-network canvas in hero (only runs if #netCanvas exists on the page)
 const canvas = document.getElementById('netCanvas');
 if (canvas) {
