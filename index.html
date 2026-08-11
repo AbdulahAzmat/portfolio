@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdullah Azmat — AI &amp; Data Science Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" style="text-decoration:none;">ABDULLAH AZMAT<span class="dot">.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#writing">Writing</a>
+      <a href="research.html">Research</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <canvas id="netCanvas"></canvas>
+  <div class="wrap hero-content">
+    <div class="eyebrow">AI &amp; Data Science · Open to everything else</div>
+    <h1>I build things that learn from <span class="accent">data</span>, then explain what they found.</h1>
+    <p class="lede">I'm Abdullah — I turn messy datasets and half-formed ideas into models, tools, and products people actually use. This is where I showcase it all.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="projects.html">View projects</a>
+      <a class="btn btn-ghost" href="#" id="resumeBtn">Download résumé</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="bar"></div>SCROLL</div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-num">01 / About</div>
+        <h2 class="section-title">A little about how I work</h2>
+      </div>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I got into data science right as all the AI hype was starting to take off. While most people were just fascinated by the new technology, <strong>I wanted to actually learn how it worked under the hood</strong> — and that curiosity is what pulled me into data science in the first place.</p>
+        <p>Since then, I've been working across the stack: cleaning messy data, training models, and building the tools that put them in front of real people.</p>
+        <p>I'm currently based in Lahore, Pakistan, working on-site as an intern at NASTP Delta.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><span>Based in</span><span>Lahore, Pakistan</span></div>
+        <div class="fact"><span>Focus</span><span>ML, applied data science, tooling</span></div>
+        <div class="fact"><span>Currently</span><span>Onsite Intern @ NASTP Delta</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-num">02 / Toolkit</div>
+        <h2 class="section-title">Skills &amp; tools</h2>
+      </div>
+    </div>
+    <div class="skill-groups reveal">
+      <div class="skill-card">
+        <h4>Modeling &amp; ML</h4>
+        <ul class="skill-list">
+          <li>PyTorch &amp; scikit-learn</li>
+          <li>LLMs &amp; RAG systems</li>
+          <li>Classical statistics</li>
+          <li>Experiment design / A-B testing</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Data &amp; infra</h4>
+        <ul class="skill-list">
+          <li>SQL &amp; data warehousing</li>
+          <li>Airflow / pipeline orchestration</li>
+          <li>Spark for large datasets</li>
+          <li>AWS / GCP</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Product &amp; delivery</h4>
+        <ul class="skill-list">
+          <li>Python &amp; FastAPI</li>
+          <li>React / Next.js</li>
+          <li>Dashboarding (D3, Plotly)</li>
+          <li>Stakeholder communication</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-num">03 / Notes</div>
+        <h2 class="section-title">Writing</h2>
+      </div>
+      <p class="section-sub">Occasional notes on models, data, and things I learned the hard way.</p>
+    </div>
+    <div class="writing-list reveal">
+      <a class="writing-item" href="#">
+        <span class="wt">Why your churn model is probably measuring the wrong thing</span>
+        <span class="wd">MAR 2026</span>
+      </a>
+      <a class="writing-item" href="#">
+        <span class="wt">A minimal RAG setup that's actually easy to debug</span>
+        <span class="wd">JAN 2026</span>
+      </a>
+      <a class="writing-item" href="#">
+        <span class="wt">Notes from six months of shipping models to non-technical teams</span>
+        <span class="wd">OCT 2025</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-num">04 / Right now</div>
+        <h2 class="section-title">What I'm up to</h2>
+      </div>
+    </div>
+    <div class="now-box reveal">
+      <div class="pulse"><span class="dot2"></span>Currently</div>
+      <p>Working onsite as an intern at NASTP Delta in Lahore, and building out the projects and research write-ups for this site. Say hi if any of that overlaps with what you're working on.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <h2>Let's talk about your data, your project, or something else entirely.</h2>
+      <p>The fastest way to reach me is email. I usually reply within a couple of days.</p>
+    </div>
+    <div class="social-list">
+      <a href="mailto:abdullahazmat.w@gmail.com">→ abdullahazmat.w@gmail.com</a>
+      <a href="https://www.linkedin.com/in/abdullah-azmat-236230327" target="_blank" rel="noopener">→ LinkedIn</a>
+      <a href="https://github.com/AbdulahAzmat" target="_blank" rel="noopener">→ GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Abdullah Azmat — built with a bit too much coffee.</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
