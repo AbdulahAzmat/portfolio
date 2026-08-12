@@ -35,8 +35,8 @@ if (canvas) {
     nodes = Array.from({length: count}, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.25 * devicePixelRatio,
-      vy: (Math.random() - 0.5) * 0.25 * devicePixelRatio,
+      vx: (Math.random() - 0.5) * 0.35 * devicePixelRatio,
+      vy: (Math.random() - 0.5) * 0.35 * devicePixelRatio,
     }));
   }
 
@@ -56,8 +56,8 @@ if (canvas) {
         const dx = a.x - b.x, dy = a.y - b.y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < linkDist) {
-          ctx.strokeStyle = `rgba(255,180,84,${(1 - dist/linkDist) * 0.6})`;
-          ctx.lineWidth = 1.2;
+          ctx.strokeStyle = `rgba(255,180,84,${(1 - dist/linkDist) * 0.8})`;
+          ctx.lineWidth = 1.4;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -66,9 +66,9 @@ if (canvas) {
       }
     }
     for (const n of nodes) {
-      ctx.fillStyle = 'rgba(240,244,250,0.85)';
+      ctx.fillStyle = 'rgba(245,248,252,0.95)';
       ctx.beginPath();
-      ctx.arc(n.x, n.y, 2.1 * devicePixelRatio, 0, Math.PI*2);
+      ctx.arc(n.x, n.y, 2.6 * devicePixelRatio, 0, Math.PI*2);
       ctx.fill();
     }
 
@@ -82,6 +82,15 @@ if (canvas) {
     frame();
   }
 
-  window.addEventListener('resize', () => { resize(); initNodes(); });
+  // Only rebuild on a real resize — mobile browsers fire resize when the
+  // address bar hides/shows on scroll, which would otherwise reset the animation.
+  let lastW = window.innerWidth;
+  window.addEventListener('resize', () => {
+    if (Math.abs(window.innerWidth - lastW) < 40) { resize(); return; }
+    lastW = window.innerWidth;
+    resize();
+    initNodes();
+  });
+
   setup();
 }
