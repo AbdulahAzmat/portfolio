@@ -56,8 +56,8 @@ if (canvas) {
         const dx = a.x - b.x, dy = a.y - b.y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < linkDist) {
-          ctx.strokeStyle = `rgba(255,180,84,${(1 - dist/linkDist) * 0.35})`;
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(255,180,84,${(1 - dist/linkDist) * 0.6})`;
+          ctx.lineWidth = 1.2;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -66,9 +66,9 @@ if (canvas) {
       }
     }
     for (const n of nodes) {
-      ctx.fillStyle = 'rgba(230,235,241,0.55)';
+      ctx.fillStyle = 'rgba(240,244,250,0.85)';
       ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.6 * devicePixelRatio, 0, Math.PI*2);
+      ctx.arc(n.x, n.y, 2.1 * devicePixelRatio, 0, Math.PI*2);
       ctx.fill();
     }
 
