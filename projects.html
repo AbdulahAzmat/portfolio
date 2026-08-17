@@ -3,27 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Abdullah Azmat</title>
+<title>Projects | Abdullah Azmat</title>
+<meta name="description" content="Selected data science and software projects by Abdullah Azmat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<noscript><style>#loader{display:none}</style></noscript>
 </head>
 <body>
+
+<div id="loader">
+  <div class="l-name">Projects</div>
+  <div class="l-count">00</div>
+</div>
 
 <canvas id="netCanvas"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo" style="text-decoration:none;">ABDULLAH AZMAT<span class="dot">.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
-    <nav class="links" id="navLinks">
-      <a href="index.html#about">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="index.html#skills">Skills</a>
-      <a href="index.html#writing">Writing</a>
-      <a href="research.html">Research</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+    <a href="index.html" class="logo">Abdullah Azmat</a>
+    <div class="nav-right">
+      <nav class="links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="sound-btn" id="soundBtn" aria-pressed="false" aria-label="Toggle ambient sound">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>Sound</span>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
   </div>
 </header>
 
@@ -31,72 +45,40 @@
   <div class="wrap reveal">
     <div class="eyebrow">Selected work</div>
     <h1>Projects</h1>
-    <p class="lede">A mix of models, tools, and things I built because I was curious. Each one started as a messy dataset or a half-formed idea.</p>
+    <p class="lede">Things I built to answer a question or ship something usable. Each one started as a messy dataset or a half-formed idea.</p>
   </div>
 </section>
 
 <section style="border-top:none; padding-top:0;">
   <div class="wrap">
-    <div class="projects reveal">
-      <div class="project">
+    <div class="idx-list reveal">
+
+      <div class="idx-item">
         <div class="idx">01</div>
         <div>
-          <h3>Churn prediction pipeline</h3>
-          <p class="outcome">Built an end-to-end pipeline that flagged at-risk customers two weeks earlier than the team's existing heuristic, cutting churn in the pilot segment by double digits.</p>
+          <p class="meta">May 2026</p>
+          <h3>Customer 360: E-Commerce Analytics</h3>
+          <p class="outcome">A full customer-segmentation and basket-analysis study on the Olist Brazilian e-commerce dataset. Mined purchase patterns with Apriori and FP-Growth, then segmented customers using K-Prototypes and hierarchical clustering over Gower distance so that categorical and numeric features could be compared in the same space.</p>
           <div class="stack">
-            <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">Airflow</span><span class="tag">SQL</span>
+            <span class="tag">Python</span><span class="tag">Apriori</span><span class="tag">FP-Growth</span><span class="tag">K-Prototypes</span><span class="tag">Gower distance</span>
           </div>
         </div>
-        <div class="links">
-          <a href="#">Live demo →</a>
-          <a href="#">GitHub →</a>
-        </div>
+        <div class="links"></div>
       </div>
 
-      <div class="project">
+      <div class="idx-item">
         <div class="idx">02</div>
         <div>
-          <h3>Document Q&amp;A assistant</h3>
-          <p class="outcome">A retrieval-augmented assistant that lets a team query hundreds of internal PDFs in plain English, with citations back to the source page.</p>
+          <p class="meta">Feb to May 2025</p>
+          <h3>FinSync: Banking Application</h3>
+          <p class="outcome">A desktop banking application built with a team. I led the UI design and modelled the relational database, enforcing ACID compliance across transactional operations so balances stayed correct under concurrent activity.</p>
           <div class="stack">
-            <span class="tag">LLMs</span><span class="tag">Embeddings</span><span class="tag">FastAPI</span><span class="tag">React</span>
+            <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">MySQL</span><span class="tag">UI design</span>
           </div>
         </div>
-        <div class="links">
-          <a href="#">Live demo →</a>
-          <a href="#">GitHub →</a>
-        </div>
+        <div class="links"></div>
       </div>
 
-      <div class="project">
-        <div class="idx">03</div>
-        <div>
-          <h3>City transit dashboard</h3>
-          <p class="outcome">An interactive dashboard visualizing five years of public transit delays, used by a local advocacy group to push for a route change that shipped in 2025.</p>
-          <div class="stack">
-            <span class="tag">D3.js</span><span class="tag">Pandas</span><span class="tag">PostGIS</span>
-          </div>
-        </div>
-        <div class="links">
-          <a href="#">Live demo →</a>
-          <a href="#">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project">
-        <div class="idx">04</div>
-        <div>
-          <h3>Weeknight recipe generator</h3>
-          <p class="outcome">A just-for-fun side project: a small model that suggests dinner from whatever's in your fridge photo. Built to learn multimodal models end to end.</p>
-          <div class="stack">
-            <span class="tag">Vision</span><span class="tag">PyTorch</span><span class="tag">Next.js</span>
-          </div>
-        </div>
-        <div class="links">
-          <a href="#">Live demo →</a>
-          <a href="#">GitHub →</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -104,12 +86,19 @@
 <section class="cta-strip">
   <div class="wrap reveal">
     <p>Want to see the research side of things instead?</p>
-    <a class="btn btn-ghost" href="research.html">View research work →</a>
+    <a class="btn" href="research.html">View research</a>
   </div>
 </section>
 
-<footer>© 2026 Abdullah Azmat — built with a bit too much coffee.</footer>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Azmat</span>
+    <span>Lahore, Pakistan</span>
+  </div>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+# Vendored third-party agent skills (MIT, from greensock/gsap-skills).
+# Kept local rather than committed: they are 95KB of someone else's docs, they
+# are not part of the site, and redistributing them here without their LICENSE
+# file would be a licence-compliance gap. Restore with:
+#   npx skills add https://github.com/greensock/gsap-skills
+.claude/skills/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/

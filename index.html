@@ -3,63 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdullah Azmat — AI &amp; Data Science Portfolio</title>
+<title>Abdullah Azmat | Data Science</title>
+<meta name="description" content="Abdullah Azmat, final-year BS Data Science student at FAST NUCES Lahore, currently an onsite intern at NASTP Delta.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<noscript><style>#loader{display:none}</style></noscript>
 </head>
 <body>
+
+<div id="loader">
+  <div class="l-name">Abdullah Azmat</div>
+  <div class="l-count">00</div>
+</div>
 
 <canvas id="netCanvas"></canvas>
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo" style="text-decoration:none;">ABDULLAH AZMAT<span class="dot">.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
-    <nav class="links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#writing">Writing</a>
-      <a href="research.html">Research</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <a href="index.html" class="logo">Abdullah Azmat</a>
+    <div class="nav-right">
+      <nav class="links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="sound-btn" id="soundBtn" aria-pressed="false" aria-label="Toggle ambient sound">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>Sound</span>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap hero-content">
-    <div class="eyebrow">AI &amp; Data Science · Open to everything else</div>
-    <h1>I build things that learn from <span class="accent">data</span>, then explain what they found.</h1>
-    <p class="lede">I'm Abdullah — I turn messy datasets and half-formed ideas into models, tools, and products people actually use. This is where I showcase it all.</p>
+    <div class="eyebrow">Data Science · Lahore, Pakistan</div>
+    <h1>
+      <span class="line"><span>I build things</span></span>
+      <span class="line"><span>that learn from data,</span></span>
+      <span class="line"><span>then explain what</span></span>
+      <span class="line"><span>they found.</span></span>
+    </h1>
+    <p class="lede">Final-year BS Data Science student at FAST NUCES Lahore, currently interning onsite at NASTP Delta. I work across the stack: cleaning messy data, training models, and building the tools that put them in front of real people.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="projects.html">View projects</a>
-      <a class="btn btn-ghost" href="Abdullah_Azmat_CV.pdf" target="_blank" rel="noopener" download>Download résumé</a>
+      <a class="btn btn-primary" href="projects.html">Selected work</a>
+      <a class="btn" href="Abdullah_Azmat_CV.pdf" target="_blank" rel="noopener" download>Résumé</a>
     </div>
   </div>
-  <div class="scroll-cue"><div class="bar"></div>SCROLL</div>
+  <div class="scroll-cue"><div class="bar"></div>Scroll</div>
 </section>
 
 <section id="about">
   <div class="wrap">
     <div class="section-head reveal">
+      <div class="section-num">01 / About</div>
       <div>
-        <div class="section-num">01 / About</div>
         <h2 class="section-title">A little about how I work</h2>
       </div>
     </div>
     <div class="about-grid reveal">
+      <div class="spacer"></div>
       <div>
-        <p>I got into data science right as all the AI hype was starting to take off. While most people were just fascinated by the new technology, <strong>I wanted to actually learn how it worked under the hood</strong> — and that curiosity is what pulled me into data science in the first place.</p>
-        <p>Since then, I've been working across the stack: cleaning messy data, training models, and building the tools that put them in front of real people.</p>
-        <p>I'm a final year BS Data Science student at <strong>FAST NUCES Lahore</strong>, currently working on-site as an intern at NASTP Delta.</p>
+        <p>I got into data science right as the AI hype was starting to take off. While most people were fascinated by the technology itself, <strong>I wanted to understand how it actually worked under the hood</strong>, and that curiosity is what pulled me in.</p>
+        <p>Since then I've been working across the stack: cleaning messy data, training models, and building the tools that put them in front of real people. Most of what I enjoy sits at the seam between the modelling and the thing someone actually uses.</p>
       </div>
       <div class="facts">
         <div class="fact"><span>Based in</span><span>Lahore, Pakistan</span></div>
+        <div class="fact"><span>Studying</span><span>BS Data Science<br>FAST NUCES Lahore</span></div>
+        <div class="fact"><span>Currently</span><span>Onsite Intern<br>NASTP Delta</span></div>
         <div class="fact"><span>Focus</span><span>ML, applied data science, tooling</span></div>
-        <div class="fact"><span>Currently</span><span>Onsite Intern @ NASTP Delta</span></div>
-        <div class="fact"><span>Studying</span><span>BS Data Science, FAST NUCES</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="carousel">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num">02 / Selected work</div>
+      <div>
+        <h2 class="section-title">Things I've built</h2>
+        <p class="section-sub">Drag, scroll, or use the arrows.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-track reveal" id="carouselTrack">
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Customer 360, E-Commerce Analytics">
+      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
+      <div>
+        <h3>Customer 360: E-Commerce Analytics</h3>
+        <p>Basket analysis and customer segmentation over the Olist Brazilian e-commerce dataset, mixing categorical and numeric features in one distance space.</p>
+        <div class="stack">
+          <span class="tag">Apriori</span><span class="tag">FP-Growth</span><span class="tag">K-Prototypes</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · May 2026</p>
+        <h2>Customer 360: E-Commerce Analytics</h2>
+        <p class="d-lede">A full customer-segmentation and basket-analysis study built on the Olist Brazilian e-commerce dataset, covering roughly 100,000 orders across sellers, products, payments and reviews.</p>
+        <h4>The problem</h4>
+        <p>Retail customer data is awkward to cluster because it is genuinely mixed. Order counts and spend are numeric, while product category, payment type and state are categorical. Most clustering algorithms quietly assume one or the other, so the usual shortcut is to one-hot encode everything and hope Euclidean distance still means something. It rarely does.</p>
+        <h4>What I did</h4>
+        <p>Mined frequent itemsets and association rules with both Apriori and FP-Growth to find which product categories actually get bought together, then segmented customers using K-Prototypes and hierarchical clustering over Gower distance, which handles categorical and numeric features in the same distance space without forcing everything into one type.</p>
+        <p>Running two rule-mining algorithms against each other was deliberate: FP-Growth is far faster on this data, and agreement between the two is a reasonable check that the rules are real rather than artefacts of a support threshold.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">Apriori</span><span class="tag">FP-Growth</span><span class="tag">K-Prototypes</span><span class="tag">Gower distance</span><span class="tag">Hierarchical clustering</span>
+        </div>
+        <div class="d-links"><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
+    <article class="card" role="button" tabindex="0" aria-label="Open details: FinSync, Banking Application">
+      <div class="card-top"><span class="card-kind">Project</span><span>2025</span></div>
+      <div>
+        <h3>FinSync: Banking Application</h3>
+        <p>Desktop banking app where I led the UI design and modelled the relational database, enforcing ACID compliance across transactional operations.</p>
+        <div class="stack">
+          <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · Feb to May 2025</p>
+        <h2>FinSync: Banking Application</h2>
+        <p class="d-lede">A desktop banking application built with a team, where I led the interface design and modelled the relational database behind it.</p>
+        <h4>The problem</h4>
+        <p>A banking app is mostly an exercise in not losing money. Two operations touching the same balance at the same time, or a transfer that debits one account and then fails before crediting the other, are the failure cases that matter, and they are invisible until they happen.</p>
+        <h4>What I did</h4>
+        <p>Designed the relational schema and enforced ACID compliance across every transactional path, so a transfer either completes in full or leaves no trace. That means wrapping the debit and credit in a single transaction rather than two statements that merely run next to each other.</p>
+        <p>On the interface side I built the flows for accounts, transfers and transaction history, aiming for screens that stay readable when an account has thousands of rows behind it rather than the dozen a demo usually shows.</p>
+        <div class="stack">
+          <span class="tag">C#</span><span class="tag">.NET Core</span><span class="tag">MySQL</span><span class="tag">Relational design</span><span class="tag">ACID</span><span class="tag">UI design</span>
+        </div>
+        <div class="d-links"><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Evidence-Based Hallucination Detection in LLMs">
+      <div class="card-top"><span class="card-kind">Research</span><span>2026</span></div>
+      <div>
+        <h3>Evidence-Based Hallucination Detection in LLMs</h3>
+        <p>A retrieval-augmented framework that checks generated claims back against retrieved evidence, flagging statements nothing in the source actually supports.</p>
+        <div class="stack">
+          <span class="tag">NLP</span><span class="tag">RAG</span><span class="tag">Semantic similarity</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Research · May 2026 · Final year project</p>
+        <h2>Evidence-Based Hallucination Detection in LLMs</h2>
+        <p class="d-lede">A retrieval-augmented verification framework for catching factual hallucinations in large language model output.</p>
+        <h4>The problem</h4>
+        <p>A language model produces fluent text whether or not it has grounds for it, and fluency is exactly what makes a hallucination hard to spot. Asking a model to rate its own confidence does not help much, because the same process that produced the claim produces the confidence score.</p>
+        <h4>The approach</h4>
+        <p>Rather than trusting the model's own certainty, the framework treats verification as a retrieval problem. Claims are extracted from the generated output and checked back against retrieved source evidence using semantic similarity, so a statement can be flagged specifically when nothing in the retrieved context actually supports it.</p>
+        <p>The distinction that matters is between a claim contradicted by the evidence and a claim merely absent from it. The second is far more common and much easier to miss.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">RAG</span><span class="tag">Semantic similarity</span><span class="tag">Retrieval evaluation</span>
+        </div>
+        <div class="d-links"><a href="research.html">All research</a></div>
+      </div>
+    </article>
+
+    <a class="card card-end" href="projects.html">
+      <h3>See all work</h3>
+      <span class="arrow">Projects →</span>
+    </a>
+  </div>
+
+  <div class="wrap">
+    <div class="carousel-controls reveal">
+      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 04</div>
+      <div class="carousel-progress"><i id="carouselBar"></i></div>
+      <div class="carousel-btns">
+        <button id="carPrev" aria-label="Previous">←</button>
+        <button id="carNext" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num">03 / Experience</div>
+      <div>
+        <h2 class="section-title">Where I've worked</h2>
+      </div>
+    </div>
+    <div class="idx-list reveal">
+
+      <div class="idx-item">
+        <div class="idx">01</div>
+        <div>
+          <p class="meta">Present · Lahore</p>
+          <h3>Onsite Intern, NASTP Delta</h3>
+          <p class="outcome">Working onsite with the team in Lahore, applying data science and tooling work to live problems.</p>
+        </div>
+        <div class="links"></div>
+      </div>
+
+      <div class="idx-item">
+        <div class="idx">02</div>
+        <div>
+          <p class="meta">Jul to Aug 2025</p>
+          <h3>Chatbot Development Intern, Infotech</h3>
+          <p class="outcome">Built a prototype chatbot and designed API-driven conversation workflows behind it.</p>
+          <div class="stack">
+            <span class="tag">APIs</span><span class="tag">Conversation design</span><span class="tag">Prototyping</span>
+          </div>
+        </div>
+        <div class="links"></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -67,65 +228,40 @@
 <section id="skills">
   <div class="wrap">
     <div class="section-head reveal">
+      <div class="section-num">04 / Toolkit</div>
       <div>
-        <div class="section-num">02 / Toolkit</div>
-        <h2 class="section-title">Skills &amp; tools</h2>
+        <h2 class="section-title">What I build with</h2>
       </div>
     </div>
     <div class="skill-groups reveal">
+      <div class="spacer"></div>
       <div class="skill-card">
-        <h4>Modeling &amp; ML</h4>
+        <h4>Languages</h4>
         <ul class="skill-list">
-          <li>PyTorch &amp; scikit-learn</li>
-          <li>LLMs &amp; RAG systems</li>
-          <li>Classical statistics</li>
-          <li>Experiment design / A-B testing</li>
+          <li>Python</li>
+          <li>C++</li>
+          <li>C#</li>
+          <li>Java</li>
+          <li>SQL</li>
         </ul>
       </div>
       <div class="skill-card">
-        <h4>Data &amp; infra</h4>
+        <h4>Frameworks</h4>
         <ul class="skill-list">
-          <li>SQL &amp; data warehousing</li>
-          <li>Airflow / pipeline orchestration</li>
-          <li>Spark for large datasets</li>
-          <li>AWS / GCP</li>
+          <li>React.js</li>
+          <li>Django</li>
+          <li>.NET Core</li>
         </ul>
       </div>
       <div class="skill-card">
-        <h4>Product &amp; delivery</h4>
+        <h4>Data &amp; ML</h4>
         <ul class="skill-list">
-          <li>Python &amp; FastAPI</li>
-          <li>React / Next.js</li>
-          <li>Dashboarding (D3, Plotly)</li>
-          <li>Stakeholder communication</li>
+          <li>Pandas &amp; NumPy</li>
+          <li>Scikit-learn</li>
+          <li>Matplotlib &amp; Seaborn</li>
+          <li>Apriori / FP-Growth</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="writing">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="section-num">03 / Notes</div>
-        <h2 class="section-title">Writing</h2>
-      </div>
-      <p class="section-sub">Occasional notes on models, data, and things I learned the hard way.</p>
-    </div>
-    <div class="writing-list reveal">
-      <a class="writing-item" href="#">
-        <span class="wt">Why your churn model is probably measuring the wrong thing</span>
-        <span class="wd">MAR 2026</span>
-      </a>
-      <a class="writing-item" href="#">
-        <span class="wt">A minimal RAG setup that's actually easy to debug</span>
-        <span class="wd">JAN 2026</span>
-      </a>
-      <a class="writing-item" href="#">
-        <span class="wt">Notes from six months of shipping models to non-technical teams</span>
-        <span class="wd">OCT 2025</span>
-      </a>
     </div>
   </div>
 </section>
@@ -133,34 +269,68 @@
 <section id="now">
   <div class="wrap">
     <div class="section-head reveal">
+      <div class="section-num">05 / Right now</div>
       <div>
-        <div class="section-num">04 / Right now</div>
         <h2 class="section-title">What I'm up to</h2>
       </div>
     </div>
     <div class="now-box reveal">
       <div class="pulse"><span class="dot2"></span>Currently</div>
-      <p>Working onsite as an intern at NASTP Delta in Lahore, and building out the projects and research write-ups for this site. Say hi if any of that overlaps with what you're working on.</p>
+      <p>Interning onsite at NASTP Delta in Lahore, finishing my final year at FAST, and writing up the projects and research that live on this site. Say hi if any of that overlaps with what you're working on.</p>
     </div>
   </div>
 </section>
 
+<div class="marquee reveal">
+  <span class="sr-only">Observe, analyse, predict, strategise.</span>
+  <div class="marquee-track" aria-hidden="true">
+    <div class="mq-half">
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+    </div>
+    <div class="mq-half">
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+      <span class="phrase">Observe <i>·</i> Analyse <i>·</i> Predict <i>·</i> Strategise</span>
+    </div>
+  </div>
+</div>
+
 <section id="contact">
-  <div class="wrap contact-inner">
+  <div class="wrap contact-inner reveal">
+    <div class="section-num">06 / Contact</div>
     <div>
       <h2>Let's talk about your data, your project, or something else entirely.</h2>
       <p>The fastest way to reach me is email. I usually reply within a couple of days.</p>
     </div>
     <div class="social-list">
-      <a href="mailto:abdullahazmat.w@gmail.com">→ abdullahazmat.w@gmail.com</a>
-      <a href="https://www.linkedin.com/in/abdullah-azmat-236230327" target="_blank" rel="noopener">→ LinkedIn</a>
-      <a href="https://github.com/AbdulahAzmat" target="_blank" rel="noopener">→ GitHub</a>
+      <a href="mailto:abdullahazmat.w@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/abdullah-azmat-236230327" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/AbdulahAzmat" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Abdullah Azmat — built with a bit too much coffee.</footer>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Azmat</span>
+    <span>Lahore, Pakistan</span>
+  </div>
+</footer>
 
+<div class="detail" id="cardDetail" role="dialog" aria-modal="true" aria-label="Project detail" hidden>
+  <div class="detail-scrim" data-close></div>
+  <div class="detail-panel">
+    <button class="detail-close" id="detailClose" aria-label="Close">Close</button>
+    <div class="detail-body" id="detailBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
