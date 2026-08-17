@@ -332,6 +332,84 @@ if (hasGSAP) {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(onScroll);
 })();
 
+/* ---------- MODAL CORE ----------
+   Shared shell behind the card detail panel and the resume viewer: show and
+   hide, scroll lock, focus handling, Escape, scrim click, and a Tab trap.
+   Each caller supplies its own open and close animation.
+
+   Note the panels animate `opacity`, never `autoAlpha`. autoAlpha sets
+   visibility:hidden at 0, and nothing inside a hidden subtree can take focus,
+   so the close button would silently fail to receive it. */
+function createModal(root, opts){
+  opts = opts || {};
+  const panel = root.querySelector('[data-panel]');
+  const scrim = root.querySelector('.detail-scrim');
+  let opener = null;
+
+  function lockScroll(){
+    // compensate for the scrollbar so the page behind does not jump sideways
+    const sb = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    if (sb > 0) document.body.style.paddingRight = sb + 'px';
+  }
+  function unlockScroll(){
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  }
+
+  function open(from){
+    opener = from || null;
+    if (opts.onBeforeOpen) opts.onBeforeOpen(from);
+    root.hidden = false;
+    panel.scrollTop = 0;
+    lockScroll();
+
+    if (hasGSAP && !reduceMotion) {
+      gsap.fromTo(scrim, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 });
+      if (opts.animateIn) opts.animateIn(panel, from);
+    }
+
+    const target = opts.focusOnOpen && opts.focusOnOpen();
+    if (target) target.focus();
+  }
+
+  function close(){
+    if (root.hidden) return;
+
+    const finish = () => {
+      root.hidden = true;
+      unlockScroll();
+      if (opener && opener.isConnected) opener.focus();
+      opener = null;
+    };
+
+    if (hasGSAP && !reduceMotion) {
+      if (opts.animateOut) opts.animateOut(panel, opener);
+      gsap.to(scrim, { autoAlpha: 0, duration: 0.35, onComplete: finish });
+    } else {
+      finish();
+    }
+  }
+
+  root.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) close(); });
+  panel.querySelectorAll('[data-close-btn]').forEach(b => b.addEventListener('click', close));
+
+  document.addEventListener('keydown', (e) => {
+    if (root.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+
+    // keep focus inside the panel while it is modal
+    const f = panel.querySelectorAll('a[href], button');
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  return { open, close, isOpen: () => !root.hidden };
+}
+
 /* ---------- CARD DETAIL PANEL ----------
    Clicking a dial card expands it into a panel over a blurred page. The panel
    animates out from the clicked card's own rect, so the expansion reads as
@@ -345,29 +423,10 @@ if (hasGSAP) {
   if (!root) return;
 
   const panel = root.querySelector('.detail-panel');
-  const scrim = root.querySelector('.detail-scrim');
   const body = document.getElementById('detailBody');
   const closeBtn = document.getElementById('detailClose');
   const cards = [...document.querySelectorAll('.card')].filter(c => c.querySelector('.card-full'));
   if (!cards.length) return;
-
-  let opener = null;
-
-  /* These cards are <article role="button" tabindex="0">, not <a>. They have to
-     be: the expanded content contains its own link, and an <a> inside an <a> is
-     invalid, so the parser tears the outer anchor apart and the detail blocks
-     end up as siblings of the cards instead of children. Keeping them as
-     buttons means supplying Enter and Space by hand. */
-  cards.forEach((card) => {
-    card.setAttribute('data-expandable', '');
-    card.addEventListener('click', () => open(card));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-        e.preventDefault();
-        open(card);
-      }
-    });
-  });
 
   // offsets that map the panel's resting rect onto the clicked card's rect
   function originFrom(card){
@@ -380,71 +439,140 @@ if (hasGSAP) {
     };
   }
 
-  function lockScroll(){
-    // compensate for the scrollbar so the page behind does not jump sideways
-    const sb = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = 'hidden';
-    if (sb > 0) document.body.style.paddingRight = sb + 'px';
-  }
-  function unlockScroll(){
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-  }
-
-  function open(card){
-    opener = card;
-    body.innerHTML = card.querySelector('.card-full').innerHTML;
-    root.hidden = false;
-    panel.scrollTop = 0;
-    lockScroll();
-
-    if (hasGSAP && !reduceMotion) {
+  const modal = createModal(root, {
+    onBeforeOpen: (card) => { body.innerHTML = card.querySelector('.card-full').innerHTML; },
+    focusOnOpen: () => closeBtn,
+    animateIn: (p, card) => {
       const o = originFrom(card);
-      /* opacity, not autoAlpha. autoAlpha sets visibility:hidden at 0, and an
-         element inside a hidden subtree cannot take focus, so the close button
-         would silently fail to receive it. */
-      gsap.fromTo(panel, { x: o.x, y: o.y, scale: o.scale, opacity: 0 },
-                         { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.55, ease: 'power3.out' });
-      gsap.fromTo(scrim, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 });
+      gsap.fromTo(p, { x: o.x, y: o.y, scale: o.scale, opacity: 0 },
+                     { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.55, ease: 'power3.out' });
       gsap.fromTo(body.children, { autoAlpha: 0, y: 14 },
                                  { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.03, delay: 0.16 });
+    },
+    animateOut: (p, card) => {
+      if (!card) return;
+      const o = originFrom(card);
+      gsap.to(p, { x: o.x, y: o.y, scale: o.scale, opacity: 0, duration: 0.4, ease: 'power2.in' });
     }
-    closeBtn.focus();
+  });
+
+  /* These cards are <article role="button" tabindex="0">, not <a>. They have to
+     be: the expanded content contains its own link, and an <a> inside an <a> is
+     invalid, so the parser tears the outer anchor apart and the detail blocks
+     end up as siblings of the cards instead of children. Keeping them as
+     buttons means supplying Enter and Space by hand. */
+  cards.forEach((card) => {
+    card.setAttribute('data-expandable', '');
+    card.addEventListener('click', () => modal.open(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        modal.open(card);
+      }
+    });
+  });
+})();
+
+/* ---------- RESUME VIEWER ----------
+   Reads the CV on the site first, downloads second.
+
+   The actual PDF is painted to a canvas with PDF.js, not embedded in an
+   iframe. An iframe delegates to the browser's PDF plugin, and where there
+   isn't one, iOS Safari and every embedded webview, it renders a blank box
+   with no way for script to tell. A canvas paints everywhere.
+
+   Both the library and the file are fetched on first open only, never on page
+   load, because most visitors will never ask for the resume. */
+(function resumeViewer(){
+  const root = document.getElementById('resumeViewer');
+  const trigger = document.getElementById('resumeBtn');
+  if (!root || !trigger) return;
+
+  const closeBtn = document.getElementById('resumeClose');
+  const holder = document.getElementById('resumeRender');
+  const status = document.getElementById('resumeStatus');
+  const doc = document.getElementById('resumeDoc');
+  const PDF_URL = trigger.getAttribute('href');
+  const LIB = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js';
+  const WORKER = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+  let libPromise = null, rendered = false;
+
+  function say(msg){
+    if (!status) return;
+    if (msg) { status.textContent = msg; status.hidden = false; }
+    else { status.hidden = true; }
   }
 
-  function close(){
-    if (root.hidden) return;
+  function loadLib(){
+    if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+    if (libPromise) return libPromise;
+    libPromise = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = LIB;
+      s.onload = () => resolve(window.pdfjsLib);
+      s.onerror = () => reject(new Error('library failed to load'));
+      document.head.appendChild(s);
+    });
+    return libPromise;
+  }
 
-    const finish = () => {
-      root.hidden = true;
-      unlockScroll();
-      if (opener) opener.focus();
-      opener = null;
-    };
+  async function renderPdf(){
+    if (rendered) return;
+    say('Loading résumé…');
+    try {
+      const lib = await loadLib();
+      if (!lib) throw new Error('library unavailable');
+      lib.GlobalWorkerOptions.workerSrc = WORKER;
 
-    if (hasGSAP && !reduceMotion && opener) {
-      const o = originFrom(opener);
-      gsap.to(panel, { x: o.x, y: o.y, scale: o.scale, opacity: 0, duration: 0.4, ease: 'power2.in' });
-      gsap.to(scrim, { autoAlpha: 0, duration: 0.35, onComplete: finish });
-    } else {
-      finish();
+      const pdf = await lib.getDocument(PDF_URL).promise;
+      holder.innerHTML = '';
+
+      /* Render at the container's real content width, times DPR, so the page
+         fills the panel and stays crisp. Read the padding rather than assuming
+         it: it differs between desktop and mobile, and a hardcoded guess left
+         the page floating in dead space on phones. */
+      const cs = getComputedStyle(doc);
+      const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+      const avail = Math.max(240, doc.clientWidth - pad);
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+
+      for (let n = 1; n <= pdf.numPages; n++) {
+        const page = await pdf.getPage(n);
+        const base = page.getViewport({ scale: 1 });
+        const viewport = page.getViewport({ scale: (avail / base.width) * dpr });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        canvas.setAttribute('role', 'img');
+        canvas.setAttribute('aria-label', 'Résumé page ' + n + ' of ' + pdf.numPages);
+        holder.appendChild(canvas);
+
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+      }
+
+      rendered = true;
+      say('');
+    } catch (err) {
+      // never leave a blank box: say so, and the two links above still work
+      say('The résumé could not be displayed here. Use Download PDF or Open in new tab.');
     }
   }
 
-  closeBtn.addEventListener('click', close);
-  root.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) close(); });
+  const modal = createModal(root, {
+    onBeforeOpen: () => { setTimeout(renderPdf, 0); },   // after the panel has width
+    focusOnOpen: () => closeBtn,
+    animateIn: (p) => gsap.fromTo(p, { scale: 0.94, opacity: 0, y: 18 },
+                                     { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }),
+    animateOut: (p) => gsap.to(p, { scale: 0.96, opacity: 0, y: 12, duration: 0.35, ease: 'power2.in' })
+  });
 
-  document.addEventListener('keydown', (e) => {
-    if (root.hidden) return;
-    if (e.key === 'Escape') { close(); return; }
-    if (e.key !== 'Tab') return;
-
-    // keep focus inside the panel while it is modal
-    const f = panel.querySelectorAll('a[href], button');
-    if (!f.length) return;
-    const first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  trigger.addEventListener('click', (e) => {
+    // let a modified click open the raw PDF in a tab, as the link promises
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    modal.open(trigger);
   });
 })();
 

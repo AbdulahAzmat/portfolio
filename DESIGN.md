@@ -203,6 +203,63 @@ Because the dial owns every card transform, **`.card` must not carry `.reveal` a
 `.card:hover` must not set a transform.** Either would be overwritten mid-scroll and snap.
 The track carries `.reveal` instead, so the group still fades in as one.
 
+### Modal core
+
+`createModal(root, opts)` in `script.js` is the shared shell behind both the card detail
+panel and the resume viewer: show and hide, scroll lock with scrollbar compensation, focus
+in and focus back, Escape, scrim click, and a Tab trap. Each caller supplies only its own
+open and close animation through `animateIn` / `animateOut`.
+
+Markup contract: the panel element carries `data-panel`, the scrim carries `data-close`, and
+any close button carries `data-close-btn`. A new modal needs those three attributes and
+nothing else.
+
+**Panels animate `opacity`, never `autoAlpha`.** autoAlpha sets `visibility: hidden` at zero,
+and nothing inside a hidden subtree can take focus, so the close button silently fails to
+receive it.
+
+### Resume viewer
+
+The hero's "View résumé" control opens the CV in a panel rather than downloading it, with
+**Download PDF** and **Open in new tab** in the panel's top bar.
+
+The trigger stays a real `<a href="Abdullah_Azmat_CV.pdf" target="_blank">` and JavaScript
+intercepts the plain left click. With JS off or broken it still opens the file, and a
+modified click (ctrl, meta, shift) is left alone so it opens the raw PDF in a tab as the link
+promises. The `download` attribute was deliberately removed from that trigger: viewing is the
+primary action now, and downloading lives inside the panel.
+
+**The panel paints the real PDF to a `<canvas>` with PDF.js. Do not turn it back into an
+`<iframe>`.** An iframe delegates to the browser's PDF plugin, and where there isn't one it
+renders a silent blank box that script cannot detect. That covers iOS Safari and every
+embedded webview, and it is exactly what shipped and failed once already. A canvas paints
+everywhere, and unlike an HTML transcription it shows the actual file, which is the point:
+the owner wants the document itself, because it looks like a document.
+
+The panel is deliberately page-shaped, `min(92vw, 720px)` by `min(88vh, 1020px)`, so it reads
+as a sheet rather than a slab.
+
+**The cost is real and worth restating before adding anything else:** `pdf.min.js` is 312KB
+and `pdf.worker.min.js` is about 1MB. Both are fetched **on first open only**, never on page
+load, since most visitors never open the resume. On a cold first open the "Loading résumé"
+state can sit for a few seconds while the worker downloads. If that ever becomes the wrong
+trade, the cheaper option is a pre-rendered image of the page, which keeps exact fidelity and
+costs nothing at runtime, at the price of regenerating it whenever the PDF changes.
+
+Render width comes from the container's **real** content width, read via
+`getComputedStyle().paddingLeft/Right`, not a hardcoded inset. The padding differs between
+desktop and mobile and a fixed guess left the page floating in dead space on phones. The
+backing store is multiplied by DPR, capped at 2, so the page stays crisp.
+
+Failure never leaves a blank box: the render is wrapped so that a missing library, a missing
+file or a render error all fall through to a visible message, with Download PDF and Open in
+new tab still sitting in the bar above. This is tested by pointing the library at a dead URL,
+not merely assumed.
+
+Layout is a flex column: fixed bar, then `.resume-doc` taking the remaining height and
+scrolling. `.resume-doc` needs `min-height: 0`, otherwise a flex child refuses to shrink
+below its content size and will not scroll.
+
 ### Card detail panel
 
 Clicking a dial card expands it into a modal panel: `min(75vw, 1040px)` by `78vh` on desktop,

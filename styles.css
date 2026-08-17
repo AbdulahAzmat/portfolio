@@ -842,6 +842,84 @@ section{
 /* a card that opens a panel should say so on hover */
 .card[data-expandable]{ cursor: zoom-in; }
 
+/* ---------- RESUME VIEWER ----------
+   Same modal shell as the card panel, but sized for reading a document and
+   laid out as a column so the PDF frame can take all the leftover height. */
+/* Sized to a portrait page rather than to the viewport: at 720px wide an A4
+   renders about 1020px tall, so the window reads as a document, not a slab. */
+.resume-panel{
+  width: min(92vw, 720px);
+  height: min(88vh, 1020px);
+  max-height: 88vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;      /* the frame scrolls, not the panel */
+}
+.resume-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+.resume-title{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.resume-actions{ display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.resume-actions .btn{ padding: 10px 16px; }
+.resume-close{ position: static; }
+
+/* The PDF is rendered to a canvas by PDF.js rather than embedded in an iframe.
+   An iframe shows a blank box wherever the browser has no PDF plugin, which
+   covers iOS Safari and every embedded webview, and script cannot detect that.
+   A canvas paints everywhere, and it shows the actual file rather than a
+   transcription of it. */
+.resume-doc{
+  flex: 1 1 auto;
+  min-height: 0;         /* without this a flex child will not shrink to scroll */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px;
+  background: #101319;
+}
+.resume-render{ display: flex; flex-direction: column; gap: 16px; }
+.resume-render canvas{
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;      /* the page itself is white, like the document */
+  border: 1px solid var(--line-2);
+}
+.resume-status{
+  margin: 0;
+  padding: 18px 4px;
+  color: var(--muted-2);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.resume-status[hidden]{ display: none; }
+
+@media (max-width: 780px){
+  .resume-doc{ padding: 12px; }
+}
+
+@media (max-width: 780px){
+  .resume-panel{ width: 94vw; height: 88vh; max-height: 88vh; }
+  .resume-bar{ padding: 14px 16px; }
+  .resume-title{ display: none; }   /* the dialog is already labelled */
+  .resume-actions{ width: 100%; justify-content: space-between; }
+}
+
 @media (max-width: 780px){
   .detail{ padding: 14px; }
   .detail-panel{ width: 94vw; max-height: 86vh; padding: 54px 22px 40px; }

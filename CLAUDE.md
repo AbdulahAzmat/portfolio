@@ -28,6 +28,7 @@ Two CDN dependencies, both `<script>` tags, no bundler:
 |---|---|---|
 | Google Fonts (Inter Tight, IBM Plex Mono) | fonts.googleapis.com | small |
 | GSAP 3.13.0 + ScrollTrigger | cdn.jsdelivr.net, pinned | 70.7 KB + 43.1 KB minified |
+| PDF.js 3.11.174 | cdn.jsdelivr.net, pinned | 312 KB + 1 MB worker, **loaded only when the résumé is opened** |
 
 GSAP was added at the owner's explicit request. It is a real tradeoff worth restating if it
 ever comes up: roughly **114 KB minified** of third-party JavaScript, where the previous
@@ -190,7 +191,9 @@ on the site is now real.
 
 **Real content (done):**
 - Name, hero copy, about section, education, location, contact links
-- Résumé download button → `Abdullah_Azmat_CV.pdf`
+- Résumé: hero "View résumé" paints the real `Abdullah_Azmat_CV.pdf` to a canvas with PDF.js
+  in an on-site viewer, with Download PDF and Open in new tab inside the panel. The owner
+  wants the actual document shown, not an HTML transcription of it. See `DESIGN.md`.
 - `projects.html`: Customer 360 and FinSync (2 real projects)
 - `research.html`: Evidence-Based Hallucination Detection (1 real entry)
 - Skills section in `index.html`: real CV skills
