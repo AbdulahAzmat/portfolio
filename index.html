@@ -95,6 +95,33 @@
   </div>
 
   <div class="carousel-track reveal" id="carouselTrack">
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Football Analytics Lakehouse">
+      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
+      <div>
+        <h3>Football Analytics Lakehouse</h3>
+        <p>A Bronze, Silver and Gold pipeline in PySpark on Databricks, joining 14,001 matches with 267,255 ball-by-ball events from two independent providers.</p>
+        <div class="stack">
+          <span class="tag">PySpark</span><span class="tag">Delta Lake</span><span class="tag">Databricks</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · Oct 2026 · Data Engineering</p>
+        <h2>Football Analytics Lakehouse</h2>
+        <p class="d-lede">An end-to-end Medallion architecture pipeline for football match and event analytics, built in PySpark on Databricks Free Edition and visualised in Power BI.</p>
+        <h4>The problem</h4>
+        <p>The first version of this pipeline loaded about 16 MB, which is too small to justify Spark at all, and the free API tier stopped at the 2023 season. So the data had to get bigger for a real reason, not an artificial one.</p>
+        <h4>What I did</h4>
+        <p>Added a second source chosen to complement the first rather than repeat it: football-data.org for breadth (every match across 12 competitions) and StatsBomb open data for depth (every pass, shot and carry with pitch coordinates). The full load grew to roughly 249 MB, with a 267,255-row event table as the largest.</p>
+        <p>The pipeline uses explicit schemas with no inferred types, strict casting into Silver with bad rows diverted to quarantine, idempotent Delta <code>MERGE INTO</code> loads (a rerun reports <code>inserted=0</code> and leaves counts unchanged), parameterised backfills and a dedicated audit-log table. Gold is a star schema of 5 dimensions, 3 facts and 3 aggregates for Power BI.</p>
+        <h4>What the tests caught</h4>
+        <p>Under ANSI mode, a plain Spark <code>cast()</code> raises on a malformed value, so one bad timestamp aborted the whole Silver build. Switching to <code>try_cast</code> fixed it. The first real Databricks run also found that Unity Catalog bans <code>input_file_name()</code>, which would have quietly quarantined every one of the 267k event rows. I kept the resulting failed runs in the audit log on purpose, since a log that has only ever recorded success proves very little.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">PySpark</span><span class="tag">Delta Lake</span><span class="tag">Databricks</span><span class="tag">Unity Catalog</span><span class="tag">Power BI</span><span class="tag">Data modelling</span>
+        </div>
+        <div class="d-links"><a href="https://github.com/AbdulahAzmat/football-analytics-lakehouse" target="_blank" rel="noopener">GitHub ↗</a><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
     <article class="card" role="button" tabindex="0" aria-label="Open details: Customer 360, E-Commerce Analytics">
       <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
       <div>
@@ -117,6 +144,56 @@
           <span class="tag">Python</span><span class="tag">Apriori</span><span class="tag">FP-Growth</span><span class="tag">K-Prototypes</span><span class="tag">Gower distance</span><span class="tag">Hierarchical clustering</span>
         </div>
         <div class="d-links"><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Flick, Phone to Laptop File Transfer">
+      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
+      <div>
+        <h3>Flick: Phone to Laptop File Transfer</h3>
+        <p>Swipe a photo or document up on your phone and it lands on your laptop, with a small card, a colour-coded glow and the file already on the clipboard.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">HTTPS</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · Nov 2026</p>
+        <h2>Flick: Phone to Laptop File Transfer</h2>
+        <p class="d-lede">A small Windows tray app that receives files from a phone over the local network. There is nothing to install on the phone: it is a web page you add to your home screen.</p>
+        <h4>The problem</h4>
+        <p>Getting one photo from a phone to a laptop usually means a cable, a cloud upload or messaging it to yourself. All of those take more steps than the file deserves.</p>
+        <h4>What I did</h4>
+        <p>The laptop runs an <code>aiohttp</code> server with a self-generated HTTPS certificate. Pairing is a QR code carrying a secret token, so only a phone that scanned it can send files, and only the laptop itself can open the laptop page. Files upload as soon as you pick them and are held back until you flick, so the throw itself is instant.</p>
+        <p>On arrival a card drops from the top of the screen without taking keyboard focus, a light rings the screen edges in a colour set by the file type, and the file is copied to the clipboard so Ctrl+V works straight away. Dropped connections retry by themselves, and the app follows the laptop if its address changes.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">HTTPS</span><span class="tag">QR pairing</span><span class="tag">pystray</span><span class="tag">Pillow</span><span class="tag">Windows</span>
+        </div>
+        <div class="d-links"><a href="https://github.com/AbdulahAzmat/flicker-medium" target="_blank" rel="noopener">GitHub ↗</a><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Air Canvas">
+      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
+      <div>
+        <h3>Air Canvas</h3>
+        <p>A drawing board you control with your bare hand. A webcam tracks your finger, and different hand shapes draw, move the pointer or drag out shapes.</p>
+        <div class="stack">
+          <span class="tag">MediaPipe</span><span class="tag">OpenCV</span><span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · Aug 2026</p>
+        <h2>Air Canvas</h2>
+        <p class="d-lede">A hand-tracking drawing app that runs entirely on the CPU. Nothing is uploaded anywhere.</p>
+        <h4>How it works</h4>
+        <p>One finger draws, two fingers move the pointer, a pinch pulls out a shape and a fist pauses. There is nothing in the air to tap, so buttons press by hovering: a ring fills around a button while you hold on it. There are ten brushes, among them an italic-nib ink, a bristle brush that thins when you move fast, an airbrush and a neon pen.</p>
+        <h4>Two decisions worth noting</h4>
+        <p>The drawing is stored as objects, not pixels. Strokes keep their points and shapes keep their corners, which is what makes undo and resizing a shape afterwards possible. The bitmap is rebuilt from those objects whenever they change.</p>
+        <p>Strokes also lay down coverage first and colour second: the brush paints into a single-channel mask that is composited once, so a half-transparent marker does not go dark where a stroke crosses itself. Hand tracking costs about 30 ms a frame on a CPU, so the camera is read on its own thread.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">MediaPipe</span><span class="tag">OpenCV</span><span class="tag">NumPy</span><span class="tag">Gesture recognition</span>
+        </div>
+        <div class="d-links"><a href="https://github.com/AbdulahAzmat/air-canvas" target="_blank" rel="noopener">GitHub ↗</a><a href="projects.html">All projects</a></div>
       </div>
     </article>
 
@@ -145,6 +222,31 @@
       </div>
     </article>
 
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Stub, Event Management System">
+      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
+      <div>
+        <h3>Stub: Event Management System</h3>
+        <p>A React app for finding live events through the Ticketmaster API, registering for them and tracking the ones you are going to.</p>
+        <div class="stack">
+          <span class="tag">React</span><span class="tag">Redux Toolkit</span><span class="tag">Vite</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · Oct 2026 · Web Programming</p>
+        <h2>Stub: Event Management System</h2>
+        <p class="d-lede">A React front end over the Ticketmaster Discovery API, built for a web programming course.</p>
+        <h4>What it does</h4>
+        <p>Browse upcoming events 20 to a page, search by keyword, filter by category, city, country and date range, and sort by date, name or relevance. Event pages show the venue, line-up, price range and seat map where Ticketmaster provides them. Logged-in users can register for an event, duplicate registrations are blocked, and My Events splits them into Upcoming and Attended.</p>
+        <h4>How it is built</h4>
+        <p>State lives in four Redux Toolkit slices (auth, events, registrations and toasts), with <code>createAsyncThunk</code> handling the API calls and React Router guarding the pages that need a login.</p>
+        <p>Authentication is a front-end simulation, as the assignment allowed: users sit in localStorage with SHA-256 hashed passwords. That is fine for a coursework demo and would not be acceptable for a real product, and the README says so.</p>
+        <div class="stack">
+          <span class="tag">React</span><span class="tag">Redux Toolkit</span><span class="tag">React Router</span><span class="tag">Vite</span><span class="tag">Ticketmaster API</span>
+        </div>
+        <div class="d-links"><a href="https://github.com/AbdulahAzmat/Event-Management-System-webDev" target="_blank" rel="noopener">GitHub ↗</a><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
     <article class="card" role="button" tabindex="0" aria-label="Open details: Evidence-Based Hallucination Detection in LLMs">
       <div class="card-top"><span class="card-kind">Research</span><span>2026</span></div>
       <div>
@@ -170,6 +272,31 @@
       </div>
     </article>
 
+    <article class="card" role="button" tabindex="0" aria-label="Open details: The Side-Quest Arcade, three smaller projects">
+      <div class="card-top"><span class="card-kind">Collection</span><span>2026</span></div>
+      <div>
+        <h3>The Side-Quest Arcade</h3>
+        <p>Three smaller builds in one cabinet: a console Snake in C++, a keyboard that sounds like a firing range, and a webcam that guesses your mood.</p>
+        <div class="stack">
+          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Collection · Aug 2026</p>
+        <h2>The Side-Quest Arcade</h2>
+        <p class="d-lede">Three smaller builds that started as "I wonder if I can" and got finished anyway.</p>
+        <ul class="mini-list">
+          <li><div><h5>Console Snake</h5><span class="mini-stack">C++ · Windows console</span></div><p>A Programming Fundamentals course project. Snake with adjustable speed and a high-score file that persists between runs.</p><a href="https://github.com/AbdulahAzmat/snake-game-c-" target="_blank" rel="noopener">Code ↗</a></li>
+          <li><div><h5>Keyboard Sounds</h5><span class="mini-stack">Python · pygame</span></div><p>Plays a sound on every keypress, system-wide, with a small GUI to switch packs. The gunshot and mechanical-switch packs are synthesised from layered, filtered noise rather than sampled, with randomised variations so fast typing never loops one sample.</p><a href="https://github.com/AbdulahAzmat/keyboard-sounds" target="_blank" rel="noopener">Code ↗</a></li>
+          <li><div><h5>Emotion Detector</h5><span class="mini-stack">OpenCV · ONNX · CustomTkinter</span></div><p>Reads emotion from a live webcam or a photo using a pre-trained FER+ model on the CPU. Detection runs on its own thread so the window never freezes, and a rebalancing option corrects the model's habit of guessing neutral for rare emotions.</p><a href="https://github.com/AbdulahAzmat/Emotion-Detector" target="_blank" rel="noopener">Code ↗</a></li>
+        </ul>
+        <div class="stack">
+          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ONNX</span><span class="tag">pygame</span><span class="tag">CustomTkinter</span>
+        </div>
+        <div class="d-links"><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
     <a class="card card-end" href="projects.html">
       <h3>See all work</h3>
       <span class="arrow">Projects →</span>
@@ -178,7 +305,7 @@
 
   <div class="wrap">
     <div class="carousel-controls reveal">
-      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 04</div>
+      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 09</div>
       <div class="carousel-progress"><i id="carouselBar"></i></div>
       <div class="carousel-btns">
         <button id="carPrev" aria-label="Previous">←</button>

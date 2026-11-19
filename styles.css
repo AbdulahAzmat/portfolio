@@ -838,6 +838,62 @@ section{
   transition: color .25s ease, border-color .25s ease;
 }
 .detail-body .d-links a:hover{ color: var(--fg); border-color: var(--fg); }
+.detail-body .d-links a + a{ margin-left: 24px; }
+.detail-body code{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.86em;
+  color: var(--fg);
+}
+
+/* The Side-Quest Arcade: several small projects sharing one card.
+   Same hairline-row language as .idx-list, one level down. */
+.mini-list{
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  max-width: 68ch;
+}
+.mini-list li{
+  display: grid;
+  grid-template-columns: minmax(0, 190px) 1fr;
+  gap: 8px 28px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.mini-list h5{
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 0 0 6px;
+}
+.mini-stack{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.mini-list p{ margin: 0 0 10px; font-size: 0.94rem; }
+.mini-list li > a{
+  grid-column: 2;
+  justify-self: start;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 3px;
+  transition: color .25s ease, border-color .25s ease;
+}
+.mini-list li > a:hover{ color: var(--fg); border-color: var(--fg); }
+@media (max-width: 700px){
+  .mini-list li{ grid-template-columns: 1fr; }
+  .mini-list li > a{ grid-column: 1; }
+}
 
 /* a card that opens a panel should say so on hover */
 .card[data-expandable]{ cursor: zoom-in; }
@@ -1020,3 +1076,6 @@ footer .wrap{ display: flex; justify-content: space-between; gap: 20px; flex-wra
   .sound-btn[aria-pressed="true"] .eq i{ animation: none; height: 7px; }
   #loader{ transition: none; }
 }
+
+/* mini-list paragraphs inside a projects-page row (no .detail-body to inherit from) */
+.idx-item .mini-list p{ color: var(--muted); font-size: 0.94rem; line-height: 1.6; max-width: none; }

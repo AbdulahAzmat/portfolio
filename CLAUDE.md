@@ -194,20 +194,19 @@ on the site is now real.
 - Résumé: hero "View résumé" paints the real `Abdullah_Azmat_CV.pdf` to a canvas with PDF.js
   in an on-site viewer, with Download PDF and Open in new tab inside the panel. The owner
   wants the actual document shown, not an HTML transcription of it. See `DESIGN.md`.
-- `projects.html`: Customer 360 and FinSync (2 real projects)
+- `projects.html`: Football Analytics Lakehouse, Flick, Air Canvas, Stub (Event Management System), Customer 360, FinSync, and "The Side-Quest Arcade" (one grouped card for Console Snake, Keyboard Sounds and Emotion Detector). Small projects go in that grouped card (`.mini-list`) rather than getting a card each.
 - `research.html`: Evidence-Based Hallucination Detection (1 real entry)
 - Skills section in `index.html`: real CV skills
 - Experience section in `index.html`: NASTP Delta and Infotech
-- Homepage carousel: the 3 real work items plus a "See all work" end card, presented as a
-  rotating dial with a `01 / 04` position readout
+- Homepage carousel: 8 real work items plus a "See all work" end card, presented as a
+  rotating dial with a `01 / 09` position readout (the script updates the total itself, but the static HTML default must match)
 - Long-form write-ups for all 3 items, in `.card-full` blocks inside each card, shown in the
   expanding detail panel when a card is clicked
 
 **Removed:** the Writing section and its 3 invented article titles. There was no real
 writing to put there. Re-add the section only when actual posts exist.
 
-**Still missing:** every project and research row has an empty `.links` div because no repo
-or demo URLs were available. Rows collapse gracefully without them, but adding real GitHub
+**Still missing:** GitHub links on Customer 360, FinSync and the research row (the six newer projects have them). Customer 360's repo lives under another account (`sdnr1418/Customer_360`). Rows collapse gracefully without them, but adding real GitHub
 links is the highest-value next edit. Do **not** fill these with `href="#"` placeholders,
 the redesign deliberately removed every dead link.
 
