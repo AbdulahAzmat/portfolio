@@ -194,12 +194,12 @@ on the site is now real.
 - Résumé: hero "View résumé" paints the real `Abdullah_Azmat_CV.pdf` to a canvas with PDF.js
   in an on-site viewer, with Download PDF and Open in new tab inside the panel. The owner
   wants the actual document shown, not an HTML transcription of it. See `DESIGN.md`.
-- `projects.html`: Football Analytics Lakehouse, Air Canvas, Stub (Event Management System), Customer 360, FinSync, and "The Side-Quest Arcade" (one grouped card for Console Snake, Flick, Keyboard Sounds and Emotion Detector). Small projects go in that grouped card (`.mini-list`) rather than getting a card each.
+- `projects.html`: Football Analytics Lakehouse, Air Canvas, Emotion Detector, Stub (Event Management System), Customer 360, FinSync, and "The Side-Quest Arcade" (one grouped card for Console Snake, Flick and Keyboard Sounds). Small projects go in that grouped card (`.mini-list`) rather than getting a card each.
 - `research.html`: Evidence-Based Hallucination Detection (1 real entry)
 - Skills section in `index.html`: real CV skills
 - Experience section in `index.html`: NASTP Delta and Infotech
-- Homepage carousel: 7 real work items plus a "See all work" end card, presented as a
-  rotating dial with a `01 / 08` position readout (the script updates the total itself, but the static HTML default must match)
+- Homepage carousel: 8 real work items plus a "See all work" end card, presented as a
+  rotating dial with a `01 / 09` position readout (the script updates the total itself, but the static HTML default must match)
 - Long-form write-ups for all 3 items, in `.card-full` blocks inside each card, shown in the
   expanding detail panel when a card is clicked
 

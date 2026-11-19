@@ -172,6 +172,32 @@
       </div>
     </article>
 
+    <article class="card" role="button" tabindex="0" aria-label="Open details: Emotion Detector">
+      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
+      <div>
+        <h3>Emotion Detector</h3>
+        <p>A desktop app that reads the emotion on a face, live from a webcam or from a photo, using a pre-trained neural network that runs on the CPU.</p>
+        <div class="stack">
+          <span class="tag">OpenCV</span><span class="tag">ONNX</span><span class="tag">CustomTkinter</span>
+        </div>
+      </div>
+      <div class="card-full">
+        <p class="d-meta">Project · Aug 2026</p>
+        <h2>Emotion Detector</h2>
+        <p class="d-lede">A Python desktop app that guesses which emotion a face is showing, either live off a webcam or on a picture you pick. Everything runs locally and nothing is uploaded.</p>
+        <h4>How it works</h4>
+        <p>Each frame is converted to grayscale, faces are found with an OpenCV Haar cascade, and each face is cropped to 64 by 64 pixels and passed to FER+, a pre-trained Microsoft Research model running through ONNX Runtime. The eight output scores go through a softmax, and the last six frames are averaged so the label does not flicker.</p>
+        <p>Live mode boxes every face but reports on the largest. Picture mode numbers each face it finds and lets you pick one from a dropdown or by clicking it, with different settings: no smoothing, since a photo is one moment, and a smaller minimum face size for group shots.</p>
+        <h4>Two problems worth noting</h4>
+        <p>Detection takes 25 to 35 ms a frame, which would freeze the window if it ran on the GUI thread. The camera runs on its own thread and drops its latest result into a variable the interface reads about 30 times a second, guarded by a lock.</p>
+        <p>The model also kept answering "neutral". FER+ learned from data that is mostly neutral and happy faces, so it treats neutral as the safe guess and rarely reports fear, disgust or contempt. A "Rare emotions" setting divides each score by how common that emotion was in training, which cancels out the head start the common ones got.</p>
+        <div class="stack">
+          <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ONNX Runtime</span><span class="tag">FER+</span><span class="tag">CustomTkinter</span><span class="tag">Threading</span>
+        </div>
+        <div class="d-links"><a href="https://github.com/AbdulahAzmat/Emotion-Detector" target="_blank" rel="noopener">GitHub ↗</a><a href="projects.html">All projects</a></div>
+      </div>
+    </article>
+
     <article class="card" role="button" tabindex="0" aria-label="Open details: FinSync, Banking Application">
       <div class="card-top"><span class="card-kind">Project</span><span>2025</span></div>
       <div>
@@ -247,27 +273,26 @@
       </div>
     </article>
 
-    <article class="card" role="button" tabindex="0" aria-label="Open details: The Side-Quest Arcade, four smaller projects">
+    <article class="card" role="button" tabindex="0" aria-label="Open details: The Side-Quest Arcade, three smaller projects">
       <div class="card-top"><span class="card-kind">Collection</span><span>2026</span></div>
       <div>
         <h3>The Side-Quest Arcade</h3>
-        <p>Four smaller builds in one cabinet: a console Snake in C++, a keyboard that sounds like a firing range, a webcam that guesses your mood, and a tray app that flicks files from phone to laptop.</p>
+        <p>Three smaller builds in one cabinet: a console Snake in C++, a keyboard that sounds like a firing range, and a tray app that flicks files from phone to laptop.</p>
         <div class="stack">
-          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span>
+          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">pygame</span>
         </div>
       </div>
       <div class="card-full">
         <p class="d-meta">Collection · Aug to Nov 2026</p>
         <h2>The Side-Quest Arcade</h2>
-        <p class="d-lede">Four smaller builds that started as "I wonder if I can" and got finished anyway.</p>
+        <p class="d-lede">Three smaller builds that started as "I wonder if I can" and got finished anyway.</p>
         <ul class="mini-list">
           <li><div><h5>Console Snake</h5><span class="mini-stack">C++ · Windows console</span></div><p>A Programming Fundamentals course project. Snake with adjustable speed and a high-score file that persists between runs.</p><a href="https://github.com/AbdulahAzmat/snake-game-c-" target="_blank" rel="noopener">Code ↗</a></li>
           <li><div><h5>Flick</h5><span class="mini-stack">Python · aiohttp · HTTPS</span></div><p>Swipe a photo or document up on your phone and it lands on your laptop, with a landing card, a glow coloured by file type and the file already on the clipboard. A Windows tray app with QR-code pairing over self-signed HTTPS, and nothing to install on the phone.</p><a href="https://github.com/AbdulahAzmat/flicker-medium" target="_blank" rel="noopener">Code ↗</a></li>
           <li><div><h5>Keyboard Sounds</h5><span class="mini-stack">Python · pygame</span></div><p>Plays a sound on every keypress, system-wide, with a small GUI to switch packs. The gunshot and mechanical-switch packs are synthesised from layered, filtered noise rather than sampled, with randomised variations so fast typing never loops one sample.</p><a href="https://github.com/AbdulahAzmat/keyboard-sounds" target="_blank" rel="noopener">Code ↗</a></li>
-          <li><div><h5>Emotion Detector</h5><span class="mini-stack">OpenCV · ONNX · CustomTkinter</span></div><p>Reads emotion from a live webcam or a photo using a pre-trained FER+ model on the CPU. Detection runs on its own thread so the window never freezes, and a rebalancing option corrects the model's habit of guessing neutral for rare emotions.</p><a href="https://github.com/AbdulahAzmat/Emotion-Detector" target="_blank" rel="noopener">Code ↗</a></li>
         </ul>
         <div class="stack">
-          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ONNX</span><span class="tag">pygame</span><span class="tag">CustomTkinter</span><span class="tag">aiohttp</span>
+          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">pygame</span><span class="tag">aiohttp</span>
         </div>
         <div class="d-links"><a href="projects.html">All projects</a></div>
       </div>
@@ -281,7 +306,7 @@
 
   <div class="wrap">
     <div class="carousel-controls reveal">
-      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 08</div>
+      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 09</div>
       <div class="carousel-progress"><i id="carouselBar"></i></div>
       <div class="carousel-btns">
         <button id="carPrev" aria-label="Previous">←</button>
