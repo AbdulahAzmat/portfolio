@@ -147,31 +147,6 @@
       </div>
     </article>
 
-    <article class="card" role="button" tabindex="0" aria-label="Open details: Flick, Phone to Laptop File Transfer">
-      <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
-      <div>
-        <h3>Flick: Phone to Laptop File Transfer</h3>
-        <p>Swipe a photo or document up on your phone and it lands on your laptop, with a small card, a colour-coded glow and the file already on the clipboard.</p>
-        <div class="stack">
-          <span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">HTTPS</span>
-        </div>
-      </div>
-      <div class="card-full">
-        <p class="d-meta">Project · Nov 2026</p>
-        <h2>Flick: Phone to Laptop File Transfer</h2>
-        <p class="d-lede">A small Windows tray app that receives files from a phone over the local network. There is nothing to install on the phone: it is a web page you add to your home screen.</p>
-        <h4>The problem</h4>
-        <p>Getting one photo from a phone to a laptop usually means a cable, a cloud upload or messaging it to yourself. All of those take more steps than the file deserves.</p>
-        <h4>What I did</h4>
-        <p>The laptop runs an <code>aiohttp</code> server with a self-generated HTTPS certificate. Pairing is a QR code carrying a secret token, so only a phone that scanned it can send files, and only the laptop itself can open the laptop page. Files upload as soon as you pick them and are held back until you flick, so the throw itself is instant.</p>
-        <p>On arrival a card drops from the top of the screen without taking keyboard focus, a light rings the screen edges in a colour set by the file type, and the file is copied to the clipboard so Ctrl+V works straight away. Dropped connections retry by themselves, and the app follows the laptop if its address changes.</p>
-        <div class="stack">
-          <span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">HTTPS</span><span class="tag">QR pairing</span><span class="tag">pystray</span><span class="tag">Pillow</span><span class="tag">Windows</span>
-        </div>
-        <div class="d-links"><a href="https://github.com/AbdulahAzmat/flicker-medium" target="_blank" rel="noopener">GitHub ↗</a><a href="projects.html">All projects</a></div>
-      </div>
-    </article>
-
     <article class="card" role="button" tabindex="0" aria-label="Open details: Air Canvas">
       <div class="card-top"><span class="card-kind">Project</span><span>2026</span></div>
       <div>
@@ -272,26 +247,27 @@
       </div>
     </article>
 
-    <article class="card" role="button" tabindex="0" aria-label="Open details: The Side-Quest Arcade, three smaller projects">
+    <article class="card" role="button" tabindex="0" aria-label="Open details: The Side-Quest Arcade, four smaller projects">
       <div class="card-top"><span class="card-kind">Collection</span><span>2026</span></div>
       <div>
         <h3>The Side-Quest Arcade</h3>
-        <p>Three smaller builds in one cabinet: a console Snake in C++, a keyboard that sounds like a firing range, and a webcam that guesses your mood.</p>
+        <p>Four smaller builds in one cabinet: a console Snake in C++, a keyboard that sounds like a firing range, a webcam that guesses your mood, and a tray app that flicks files from phone to laptop.</p>
         <div class="stack">
           <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span>
         </div>
       </div>
       <div class="card-full">
-        <p class="d-meta">Collection · Aug 2026</p>
+        <p class="d-meta">Collection · Aug to Nov 2026</p>
         <h2>The Side-Quest Arcade</h2>
-        <p class="d-lede">Three smaller builds that started as "I wonder if I can" and got finished anyway.</p>
+        <p class="d-lede">Four smaller builds that started as "I wonder if I can" and got finished anyway.</p>
         <ul class="mini-list">
           <li><div><h5>Console Snake</h5><span class="mini-stack">C++ · Windows console</span></div><p>A Programming Fundamentals course project. Snake with adjustable speed and a high-score file that persists between runs.</p><a href="https://github.com/AbdulahAzmat/snake-game-c-" target="_blank" rel="noopener">Code ↗</a></li>
+          <li><div><h5>Flick</h5><span class="mini-stack">Python · aiohttp · HTTPS</span></div><p>Swipe a photo or document up on your phone and it lands on your laptop, with a landing card, a glow coloured by file type and the file already on the clipboard. A Windows tray app with QR-code pairing over self-signed HTTPS, and nothing to install on the phone.</p><a href="https://github.com/AbdulahAzmat/flicker-medium" target="_blank" rel="noopener">Code ↗</a></li>
           <li><div><h5>Keyboard Sounds</h5><span class="mini-stack">Python · pygame</span></div><p>Plays a sound on every keypress, system-wide, with a small GUI to switch packs. The gunshot and mechanical-switch packs are synthesised from layered, filtered noise rather than sampled, with randomised variations so fast typing never loops one sample.</p><a href="https://github.com/AbdulahAzmat/keyboard-sounds" target="_blank" rel="noopener">Code ↗</a></li>
           <li><div><h5>Emotion Detector</h5><span class="mini-stack">OpenCV · ONNX · CustomTkinter</span></div><p>Reads emotion from a live webcam or a photo using a pre-trained FER+ model on the CPU. Detection runs on its own thread so the window never freezes, and a rebalancing option corrects the model's habit of guessing neutral for rare emotions.</p><a href="https://github.com/AbdulahAzmat/Emotion-Detector" target="_blank" rel="noopener">Code ↗</a></li>
         </ul>
         <div class="stack">
-          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ONNX</span><span class="tag">pygame</span><span class="tag">CustomTkinter</span>
+          <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ONNX</span><span class="tag">pygame</span><span class="tag">CustomTkinter</span><span class="tag">aiohttp</span>
         </div>
         <div class="d-links"><a href="projects.html">All projects</a></div>
       </div>
@@ -305,7 +281,7 @@
 
   <div class="wrap">
     <div class="carousel-controls reveal">
-      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 09</div>
+      <div class="dial-readout" id="dialReadout" aria-live="polite"><b>01</b> / 08</div>
       <div class="carousel-progress"><i id="carouselBar"></i></div>
       <div class="carousel-btns">
         <button id="carPrev" aria-label="Previous">←</button>
